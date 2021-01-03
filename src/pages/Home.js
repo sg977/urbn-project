@@ -7,14 +7,14 @@ import Col from "../components/Col";
 function Home() {
   return (
     <div>
-      <Banner backgroundImage="https://i.imgur.com/qkdpN.jpg">
-        <h1>Pupster</h1>
-        <h2>They're the Good Boys and Girls</h2>
+      <Banner backgroundImage="https://media.bizj.us/view/img/10959464/gettyimages-855959836*1200xx5500-3106-0-84.jpg">
+        <h1>Eat Out</h1>
+        <h2>Life After Qurantine</h2>
       </Banner>
       <Container style={{ marginTop: 30 }}>
         <Row>
           <Col size="md-12">
-            <h1>Welcome To Pupster!</h1>
+            <h1>Welcome To EAT OUT</h1>
           </Col>
         </Row>
         <Row>
@@ -60,5 +60,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;
