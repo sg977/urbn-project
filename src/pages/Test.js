@@ -1,6 +1,7 @@
+import React from "react";
 import { Slider, InputNumber, Row, Col } from 'antd';
 
-class IntegerStep extends React.Component {
+class Test extends React.Component {
   state = {
     inputValue: 1,
   };
@@ -36,3 +37,4 @@ class IntegerStep extends React.Component {
     );
   }
 }
+export default Test;
