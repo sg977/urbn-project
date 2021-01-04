@@ -1,15 +1,38 @@
-import React from 'react';
-import { Slider } from 'antd';
+import { Slider, InputNumber, Row, Col } from 'antd';
 
-const Test = (({ value, onChange, text }) => {
-  return (
-    <section className="d-flex flex-column" >
-      <div className="d-flex w-100 align-items-center">
-        <Slider className="w-100" value={value} min={0} max={60} onChange={onChange} />
-      </div>
-      <span className="text-center">{text}</span>
-    </section >
-  );
-});
+class IntegerStep extends React.Component {
+  state = {
+    inputValue: 1,
+  };
 
-export default Test;
+  onChange = value => {
+    this.setState({
+      inputValue: value,
+    });
+  };
+
+  render() {
+    const { inputValue } = this.state;
+    return (
+      <Row>
+        <Col span={12}>
+          <Slider
+            min={1}
+            max={20}
+            onChange={this.onChange}
+            value={typeof inputValue === 'number' ? inputValue : 0}
+          />
+        </Col>
+        <Col span={4}>
+          <InputNumber
+            min={1}
+            max={20}
+            style={{ margin: '0 16px' }}
+            value={inputValue}
+            onChange={this.onChange}
+          />
+        </Col>
+      </Row>
+    );
+  }
+}
