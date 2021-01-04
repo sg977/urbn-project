@@ -1,24 +1,24 @@
 import React from "react";
 import Banner from "../components/Banner";
 // import Container from "../components/Container";
-import Row from "../components/Row";
-import Col from "../components/Col";
+// import Row from "../components/Row";
+// import Col from "../components/Col";
+import { Row, Col } from 'antd';
 
 function Home() {
   return (
     <div>
       <Banner backgroundImage="https://media.bizj.us/view/img/10959464/gettyimages-855959836*1200xx5500-3106-0-84.jpg">
         <h1>Eat Out</h1>
-        <h2>Life After Qurantine</h2>
       </Banner>
       {/* <Container style={{ marginTop: 30 }}> */}
         <Row>
-          <Col size="md-12">
+          <Col span={12}>
             <h1>Welcome To EAT OUT</h1>
           </Col>
         </Row>
         <Row>
-          <Col size="md-12">
+          <Col span={12}>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet diam tortor, id
               consequat mauris ullamcorper eu. Orci varius natoque penatibus et magnis dis

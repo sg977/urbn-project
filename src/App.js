@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Test from './pages/Test';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import 'antd/dist/antd.css';
 
 function App() {
   return (

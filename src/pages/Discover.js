@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import MapAutoComplete from '../components/MapAutoAomplete';
 import Marker from '../components/Marker';
 import Card from '../components/Card';
-import DistanceSlider from '../components/Slider';
+import Timer from '../components/Timer';
 
 import { Button, Input, Divider} from 'antd';
 
@@ -11,7 +11,7 @@ import { Button, Input, Divider} from 'antd';
 const apiKey = process.env.REACT_APP_API_KEY;
 // default is Philly
 const PHILLY = { lat: 39.9525, lng:  -75.1652};
-// set up initial state
+// set up initial state for the parent
 class Discover extends Component {
   constructor(props) {
     super(props);
@@ -68,7 +68,6 @@ class Discover extends Component {
     if (newMarker) {
         // check if it is push to the new array
       markers.push({ lat, lng, name });
-      console.log(markers)
       window.alert(`Added new "${name}" Marker`);
     }
 // set state for the newMarker
@@ -165,7 +164,6 @@ class Discover extends Component {
     const { autoCompleteService, geoCoderService } = this.state; // Google Maps Services
     return (
       <div className="w-100 d-flex py-4 flex-wrap justify-content-center">
-        <h1 className="w-100 fw-md">EAT OUT</h1>
         {/* Constraints section */}
         <section className="col-4">
           {mapsLoaded ?
@@ -175,8 +173,8 @@ class Discover extends Component {
                 return (
                   <div key={key} className="mb-4">
                     <div className="d-flex mb-2">
-                        {/* name should be updated */}
-                      <Input className="col-4 mr-2" placeholder="Name" onChange={(event) => this.updateConstraintName(event, key)} />
+                    {/* name should be updated */}
+                      <Input className="col-4" placeholder="Name" onChange={(event) => this.updateConstraintName(event, key)} />
                       {/* Autocomplete call is working, but not input is submitted */}
                       <MapAutoComplete
                         autoCompleteService={autoCompleteService}
@@ -186,11 +184,10 @@ class Discover extends Component {
                         addMarker={this.addMarker}
                       />
                     </div>
-                    <DistanceSlider
-                    // slider is not rendering
+                    <Timer
                       value={time}
                       onChange={(value) => this.updateConstraintTime(key, value)}
-                      text="How Far Should We Go?"
+                      text="Search Between 0-60mins"
                     />
                      {/* Search Button */}
                     <Button className="mt-4 fw-md" type="primary" size="large" onClick={this.handleSearch}>Search!</Button>
