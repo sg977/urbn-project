@@ -15,7 +15,7 @@ function App() {
           <Route exact path="/urbn-project" component={Home} />
           <Route exact path="/urbn-project/about" component={Home} />
           <Route exact path="/urbn-project/test" component={Test} />
-          <Route exact path="/urbn-project/discover" component={Discover} />
+          <Route exact path="/urbn-project" component={Discover} />
         <Footer />
       </div>
     </Router>

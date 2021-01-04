@@ -5,7 +5,7 @@ import Marker from '../components/Marker';
 import Card from '../components/Card';
 import DistanceSlider from '../components/Slider';
 
-import { Button, Input, Divider, message } from 'antd';
+import { Button, Input, Divider} from 'antd';
 
 // google api key
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -60,14 +60,16 @@ class Discover extends Component {
         newMarker = false;
         markers[i].lat = lat;
         markers[i].lng = lng;
-        message.success(`Updated "${name}" Marker`);
+        window.alert(`Updated "${name}" Marker`);
         break;
       }
     }
     // Name does not exist in marker list. Create new marker
     if (newMarker) {
+        // check if it is push to the new array
       markers.push({ lat, lng, name });
-      message.success(`Added new "${name}" Marker`);
+      console.log(markers)
+      window.alert(`Added new "${name}" Marker`);
     }
 // set state for the newMarker
     this.setState({ markers });
@@ -88,13 +90,14 @@ class Discover extends Component {
     });
   });
 
-  // Find resurants based on constraints
+  // Find resturants based on constraints
   handleSearch = (() => {
     const { markers, constraints, placesService, directionService, mapsApi } = this.state;
     if (markers.length === 0) {
-      message.warn('Add a constraint and try again!');
+      window.alert('CONSTRAINT NOT VALID');
       return;
     }
+
     const filteredResults = [];
     const marker = markers[0];
     const timeLimit = constraints[0].time;
@@ -104,7 +107,7 @@ class Discover extends Component {
       location: markerLatLng,
       type: ['restaurant', 'cafe'], // List of types: https://developers.google.com/places/supported_types
       query: 'restaurant',
-      rankBy: mapsApi.places.RankBy.DISTANCE, // Cannot be used with radius.
+      rankBy: mapsApi.places.RankBy.DISTANCE,
     };
 
     // Look for all resturants 
@@ -114,13 +117,14 @@ class Discover extends Component {
       for (let i = 0; i < responseLimit; i++) {
         const restaurant = response[i];
         const { rating, name } = restaurant;
-        const address = restaurant.formatted_address; // e.g 80 mandai Lake Rd,
+        const address = restaurant.formatted_address;
         const priceLevel = restaurant.price_level; // 1, 2, 3...
         let photoUrl = '';
         let openNow = false;
         if (restaurant.opening_hours) {
           openNow = restaurant.opening_hours.open_now; // e.g true/false
         }
+        // sometime there is no photo
         if (restaurant.photos && restaurant.photos.length > 0) {
           photoUrl = restaurant.photos[0].getUrl();
         }
@@ -171,7 +175,9 @@ class Discover extends Component {
                 return (
                   <div key={key} className="mb-4">
                     <div className="d-flex mb-2">
+                        {/* name should be updated */}
                       <Input className="col-4 mr-2" placeholder="Name" onChange={(event) => this.updateConstraintName(event, key)} />
+                      {/* Autocomplete call is working, but not input is submitted */}
                       <MapAutoComplete
                         autoCompleteService={autoCompleteService}
                         geoCoderService={geoCoderService}
@@ -181,10 +187,13 @@ class Discover extends Component {
                       />
                     </div>
                     <DistanceSlider
-                    //   value={time}
-                    //   onChange={(value) => this.updateConstraintTime(key, value)}
+                    // slider is not rendering
+                      value={time}
+                      onChange={(value) => this.updateConstraintTime(key, value)}
                       text="How Far Should We Go?"
                     />
+                     {/* Search Button */}
+                    <Button className="mt-4 fw-md" type="primary" size="large" onClick={this.handleSearch}>Search!</Button>
                     <Divider />
                   </div>
                 );
@@ -194,10 +203,10 @@ class Discover extends Component {
           }
         </section>
 
-        {/* Maps Section */}
+          {/* api works, map disply correctly */}
         <section className="col-12">
           <GoogleMapReact
-            style={{height: '400px'}}
+            style={{height: '500px'}}
             resetBoundsOnResize={true}
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
@@ -208,7 +217,7 @@ class Discover extends Component {
             defaultZoom={11}
             defaultCenter={{ lat: PHILLY.lat, lng: PHILLY.lng }}
             yesIWantToUseGoogleMapApiInternals={true}
-            onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)} // "maps" is the mapApi.
+            onGoogleApiLoaded={({ map, maps }) => this.apiHasLoaded(map, maps)} // "maps" is the mapApi
           >
             {/* Pin markers on the Map*/}
             {markers.map((marker, key) => {
@@ -219,9 +228,6 @@ class Discover extends Component {
             })}
           </GoogleMapReact>
         </section>
-
-        {/* Search Button */}
-        <Button className="mt-4 fw-md" type="primary" size="large" onClick={this.handleSearch}>Search!</Button>
 
         {/* Results section */}
         {searchResults.length > 0 ?
@@ -238,6 +244,7 @@ class Discover extends Component {
               </div>
             </section>
           </>
+        // if nothing, return null
           : null}
       </div>
     )
