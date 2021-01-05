@@ -16,8 +16,7 @@ class Discover extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    //  location name and name 
-      constraints: [{ name: '', time: 0 }],
+      constraints: [{ name: '', time: 0 }], //get this back correctly
       searchResults: [],
       mapsLoaded: false,
       markers: [],
@@ -38,6 +37,8 @@ class Discover extends Component {
     const constraints = Object.assign([], oldConstraints);
     constraints[key].name = event.target.value;
     this.setState({ constraints });
+    // it's working
+    // window.alert('name is updated')
   });
 
   // Updates distace for constraint
@@ -46,6 +47,8 @@ class Discover extends Component {
     const constraints = Object.assign([], oldConstraints);
     constraints[key].time = value;
     this.setState({ constraints });
+    // it's wokring
+    // window.alert('time is updated')
   });
 
   // Adds new marker if it does not exist
@@ -55,6 +58,8 @@ class Discover extends Component {
 
     // If name already exists in marker, just update
     let newMarker = true;
+    // not working
+    // window.alert('New Location!')
     for (let i = 0; i < markers.length; i++) {
       if (markers[i].name === name) {
         newMarker = false;
@@ -92,6 +97,7 @@ class Discover extends Component {
   // Find resturants based on constraints
   handleSearch = (() => {
     const { markers, constraints, placesService, directionService, mapsApi } = this.state;
+    console.log(this.state)
     if (markers.length === 0) {
       window.alert('CONSTRAINT NOT VALID');
       return;
@@ -104,20 +110,20 @@ class Discover extends Component {
 
     const placesRequest = {
       location: markerLatLng,
-      type: ['restaurant', 'cafe'], // List of types: https://developers.google.com/places/supported_types
+      type: ['restaurant', 'cafe'],
       query: 'restaurant',
       rankBy: mapsApi.places.RankBy.DISTANCE,
     };
 
     // Look for all resturants 
     placesService.textSearch(placesRequest, ((response) => {
-      // Only look at the nearest top 10.
-      const responseLimit = Math.min(10, response.length);
+      // Only look at the nearest top 5.
+      const responseLimit = Math.min(5, response.length);
       for (let i = 0; i < responseLimit; i++) {
         const restaurant = response[i];
         const { rating, name } = restaurant;
         const address = restaurant.formatted_address;
-        const priceLevel = restaurant.price_level; // 1, 2, 3...
+        const priceLevel = restaurant.price_level;
         let photoUrl = '';
         let openNow = false;
         if (restaurant.opening_hours) {
@@ -134,6 +140,7 @@ class Discover extends Component {
           destination: address, // Address of resturant
           travelMode: 'DRIVING',
         }
+
         directionService.route(directionRequest, ((result, status) => {
           if (status !== 'OK') { return }
           const travellingRoute = result.routes[0].legs[0]; // { duration: { text: 1mins, value: 600 } }
@@ -169,12 +176,13 @@ class Discover extends Component {
           {mapsLoaded ?
             <div>
               {constraints.map((constraint, key) => {
+                // set the name and time
                 const { name, time } = constraint;
                 return (
-                  <div key={key} className="mb-4">
-                    <div className="d-flex mb-2">
+                  <div key={key} className="mb-4"> 
+                    <div id='input' style={{ margin: 50 }} >
                     {/* name should be updated */}
-                      <Input className="col-4" placeholder="Name" onChange={(event) => this.updateConstraintName(event, key)} />
+                      <Input style={{ width: 200 }} placeholder="Name" onChange={(event) => this.updateConstraintName(event, key)} />
                       {/* Autocomplete call is working, but not input is submitted */}
                       <MapAutoComplete
                         autoCompleteService={autoCompleteService}
@@ -183,15 +191,15 @@ class Discover extends Component {
                         markerName={name}
                         addMarker={this.addMarker}
                       />
-                    </div>
                     <Timer
                       value={time}
                       onChange={(value) => this.updateConstraintTime(key, value)}
                       text="Search Between 0-60mins"
                     />
-                     {/* Search Button */}
-                    <Button className="mt-4 fw-md" type="primary" size="large" onClick={this.handleSearch}>Search!</Button>
                     <Divider />
+                     {/* Search Button */}
+                    <Button className="mt-4 fw-md" type="primary" size="large" onClick={this.handleSearch}>Search!</Button> 
+                    </div>
                   </div>
                 );
               })}

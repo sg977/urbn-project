@@ -1,8 +1,5 @@
 import React from "react";
 import Banner from "../components/Banner";
-// import Container from "../components/Container";
-// import Row from "../components/Row";
-// import Col from "../components/Col";
 import { Row, Col } from 'antd';
 
 function Home() {
@@ -11,14 +8,13 @@ function Home() {
       <Banner backgroundImage="https://media.bizj.us/view/img/10959464/gettyimages-855959836*1200xx5500-3106-0-84.jpg">
         <h1>Eat Out</h1>
       </Banner>
-      {/* <Container style={{ marginTop: 30 }}> */}
         <Row>
           <Col span={12}>
             <h1>Welcome To EAT OUT</h1>
           </Col>
         </Row>
         <Row>
-          <Col span={12}>
+          <Col span={24}>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquet diam tortor, id
               consequat mauris ullamcorper eu. Orci varius natoque penatibus et magnis dis
@@ -34,7 +30,6 @@ function Home() {
             </p>
           </Col>
         </Row>
-      {/* </Container> */}
     </div>
   );
 }

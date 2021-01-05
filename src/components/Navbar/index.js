@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PageHeader, Button, Row, Col, Menu} from 'antd';
+import { PageHeader, Button } from 'antd';
 import { HomeOutlined, SearchOutlined } from '@ant-design/icons';
 import "./style.css";
 
