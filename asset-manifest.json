@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/urbn-project/static/css/main.9ec8d202.chunk.css",
-    "main.js": "/urbn-project/static/js/main.8d810672.chunk.js",
-    "main.js.map": "/urbn-project/static/js/main.8d810672.chunk.js.map",
-    "runtime-main.js": "/urbn-project/static/js/runtime-main.ed76f886.js",
-    "runtime-main.js.map": "/urbn-project/static/js/runtime-main.ed76f886.js.map",
+    "main.css": "/urbn-project/static/css/main.fc4ac7dd.chunk.css",
+    "main.js": "/urbn-project/static/js/main.374e2832.chunk.js",
+    "main.js.map": "/urbn-project/static/js/main.374e2832.chunk.js.map",
+    "runtime-main.js": "/urbn-project/static/js/runtime-main.3fcdb6be.js",
+    "runtime-main.js.map": "/urbn-project/static/js/runtime-main.3fcdb6be.js.map",
     "static/css/2.4d98ed14.chunk.css": "/urbn-project/static/css/2.4d98ed14.chunk.css",
-    "static/js/2.91e1258e.chunk.js": "/urbn-project/static/js/2.91e1258e.chunk.js",
-    "static/js/2.91e1258e.chunk.js.map": "/urbn-project/static/js/2.91e1258e.chunk.js.map",
-    "static/js/3.149bd845.chunk.js": "/urbn-project/static/js/3.149bd845.chunk.js",
-    "static/js/3.149bd845.chunk.js.map": "/urbn-project/static/js/3.149bd845.chunk.js.map",
+    "static/js/2.9f62db04.chunk.js": "/urbn-project/static/js/2.9f62db04.chunk.js",
+    "static/js/2.9f62db04.chunk.js.map": "/urbn-project/static/js/2.9f62db04.chunk.js.map",
+    "static/js/3.654c0b8c.chunk.js": "/urbn-project/static/js/3.654c0b8c.chunk.js",
+    "static/js/3.654c0b8c.chunk.js.map": "/urbn-project/static/js/3.654c0b8c.chunk.js.map",
     "index.html": "/urbn-project/index.html",
     "static/css/2.4d98ed14.chunk.css.map": "/urbn-project/static/css/2.4d98ed14.chunk.css.map",
-    "static/css/main.9ec8d202.chunk.css.map": "/urbn-project/static/css/main.9ec8d202.chunk.css.map",
-    "static/js/2.91e1258e.chunk.js.LICENSE.txt": "/urbn-project/static/js/2.91e1258e.chunk.js.LICENSE.txt"
+    "static/css/main.fc4ac7dd.chunk.css.map": "/urbn-project/static/css/main.fc4ac7dd.chunk.css.map",
+    "static/js/2.9f62db04.chunk.js.LICENSE.txt": "/urbn-project/static/js/2.9f62db04.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ed76f886.js",
+    "static/js/runtime-main.3fcdb6be.js",
     "static/css/2.4d98ed14.chunk.css",
-    "static/js/2.91e1258e.chunk.js",
-    "static/css/main.9ec8d202.chunk.css",
-    "static/js/main.8d810672.chunk.js"
+    "static/js/2.9f62db04.chunk.js",
+    "static/css/main.fc4ac7dd.chunk.css",
+    "static/js/main.374e2832.chunk.js"
   ]
 }
